@@ -1,0 +1,22 @@
+<template>
+    <div class="container">
+        <header>
+            <h1 class="title">Perguntas Frequentes</h1>
+        </header>
+        <div class="search-container">
+            <input type="text" class="search" placeholder="Pesquisar" oninput={handleSearch}>
+        </div>
+        <div class="faq-list">
+            <template for:each={displayedFaqs} for:item="faq" for:index="index">
+                <div key={faq.Id} class="faq-item">
+                    <h2 class="question">{faq.Question__c}</h2>
+                    <p>{faq.Answer__c}</p>
+                </div>
+            </template>
+        </div>
+        <div if:true={showButton}>
+            <lightning-button label="Ver Mais" onclick={handleViewMore}></lightning-button>
+        </div>
+    </div>
+</template>
+

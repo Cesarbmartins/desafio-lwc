@@ -1,0 +1,68 @@
+.container {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px;
+}
+
+header {
+    padding: 10px;
+    margin-bottom: 20px; /* Adicionando margem para separar o título das perguntas */
+}
+
+.title {
+    font-size: 24px;
+    margin: 0;
+    color: #333; /* Alterando a cor do texto para contrastar com o fundo */
+    position: relative; /* Adicionando posição relativa para as bordas */
+}
+
+.title::before,
+.title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 30%;
+    height: 1px;
+    background-color: #333;
+}
+
+.title::before {
+    left: 0;
+}
+
+.title::after {
+    right: 0;
+}
+
+.search-container {
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.search {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5%;
+    height: 35px;
+}
+
+.faq-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.faq-item {
+    padding: 10px;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.faq-item h2 {
+    margin: 0;
+    font-size: 15px; 
+    font-weight: bold;
+    color: #333;
+}

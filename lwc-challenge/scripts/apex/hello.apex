@@ -1,0 +1,1 @@
+FAQGenerator.createMultipleFAQ(20);
