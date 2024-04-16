@@ -1,5 +1,3 @@
-<!-- sldsValidatorIgnore -->
-<!-- sldsValidatorIgnore -->
 <template>
     <div class="container">
         <header>
@@ -18,9 +16,9 @@
                 </template>
             </div>
         </div>
-        <div if:true={showButton}>
-            <lightning-button label="Ver Mais" onclick={handleViewMore}></lightning-button>
+        <div class="pagination">
+            <lightning-button label="Anterior" onclick={handlePrevious} disabled={isFirstPage}></lightning-button>
+            <lightning-button label="Próximo" onclick={handleNext} disabled={isLastPage}></lightning-button>
         </div>
     </div>
 </template>
-
