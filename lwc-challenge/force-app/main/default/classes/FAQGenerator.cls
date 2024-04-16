@@ -6,7 +6,9 @@ public with sharing class FAQGenerator {
         faq.Answer__c = 'Com a mão';
 
         try {
-            insert faq;
+            if (Schema.sObjectType.FAQ__c.isCreateable()) {
+                insert faq;
+            }
         } catch (Exception e) {
             System.debug(e.getMessage());
         }
@@ -23,7 +25,9 @@ public with sharing class FAQGenerator {
         }
 
         try {
-            insert faqs;
+            if (Schema.sObjectType.FAQ__c.isCreateable()) {
+                insert faqs;
+            }
         } catch (Exception e) {
             System.debug(e.getMessage());
         }
