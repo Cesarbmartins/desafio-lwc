@@ -7,7 +7,7 @@
             <input type="text" class="search" placeholder="Pesquisar" oninput={handleSearch}>
         </div>
         <div class="faq-list-container">
-            <div class="faq-list" style="max-height: 300px; overflow-y: auto;">
+            <div class="faq-list">
                 <template for:each={displayedFaqs} for:item="faq" for:index="index">
                     <div key={faq.Id} class="faq-item">
                         <h2 class="question">{faq.Question__c}</h2>

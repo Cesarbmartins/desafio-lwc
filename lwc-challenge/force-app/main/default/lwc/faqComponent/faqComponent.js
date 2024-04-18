@@ -24,7 +24,9 @@ export default class FaqComponent extends LightningElement {
     }
 
     get isLastPage() {
-        return this.displayedFaqs.length < ITEMS_PER_PAGE;
+        const startIndex = (this.currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        return endIndex >= this.faqList.length;
     }
 
     handleSearch(event) {

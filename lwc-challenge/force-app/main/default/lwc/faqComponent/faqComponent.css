@@ -1,19 +1,18 @@
 .container {
     background-color: white;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 header {
-    padding: 10px;
-    margin-bottom: 20px;
-
+    padding: 5px;
+    margin-bottom: 10px;
 }
 
 .title {
-    font-size: 24px;
+    font-size: 20px;
     margin: 0;
-    color: #333; 
+    color: #333;
     position: relative;
 }
 
@@ -22,7 +21,7 @@ header {
     content: "";
     position: absolute;
     top: 50%;
-    width: 30%;
+    width: 20%;
     height: 1px;
     background-color: #333;
 }
@@ -36,34 +35,45 @@ header {
 }
 
 .search-container {
-    text-align: right;
-    margin-right: 20px;
-    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .search {
-    width: 30%;
-    padding: 10px;
+    width: 80%;
+    padding: 5px;
     border: 1px solid #ccc;
-    border-radius: 5%;
-    height: 35px;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 14px;
 }
 
 .faq-list {
     list-style: none;
     padding: 0;
     margin-top: 10px;
+    overflow-y: auto;
 }
 
 .faq-item {
     padding: 10px;
     text-align: left;
     border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .faq-item h2 {
     margin: 0;
-    font-size: 15px; 
+    font-size: 14px;
     font-weight: bold;
     color: #333;
+}
+
+.pagination {
+    margin-top: 10px;
+}
+
+.pagination lightning-button {
+    margin: 5px;
 }
