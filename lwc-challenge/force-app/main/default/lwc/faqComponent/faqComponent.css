@@ -48,6 +48,11 @@ header {
     font-size: 14px;
 }
 
+.faq-list-container {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
 .faq-list {
     list-style: none;
     padding: 0;
@@ -60,7 +65,7 @@ header {
     text-align: left;
     border-radius: 5px;
     margin-bottom: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .faq-item h2 {
