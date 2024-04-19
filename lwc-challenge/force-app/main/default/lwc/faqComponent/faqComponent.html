@@ -7,14 +7,19 @@
             <input type="text" class="search" placeholder="Pesquisar" oninput={handleSearch}>
         </div>
         <div class="faq-list-container">
-            <div class="faq-list">
-                <template for:each={displayedFaqs} for:item="faq" for:index="index">
-                    <div key={faq.Id} class="faq-item">
-                        <h2 class="question">{faq.Question__c}</h2>
-                        <p>{faq.Answer__c}</p>
-                    </div>
-                </template>
-            </div>
+            <template if:true={loading}>
+                <div class="loading-spinner"></div>
+            </template>
+            <template if:false={loading}>
+                <div class="faq-list">
+                    <template for:each={displayedFaqs} for:item="faq" for:index="index">
+                        <div key={faq.Id} class="faq-item">
+                            <h2 class="question">{faq.Question__c}</h2>
+                            <p>{faq.Answer__c}</p>
+                        </div>
+                    </template>
+                </div>
+            </template>
         </div>
         <div class="pagination">
             <lightning-button label="Anterior" onclick={handlePrevious} disabled={isFirstPage}></lightning-button>

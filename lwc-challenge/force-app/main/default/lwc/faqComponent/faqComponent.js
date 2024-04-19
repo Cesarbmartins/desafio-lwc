@@ -2,20 +2,26 @@ import { LightningElement, track, wire } from 'lwc';
 import getFAQs from '@salesforce/apex/FAQController.getFAQs';
 
 const ITEMS_PER_PAGE = 10;
+const MIN_LOADING_TIME = 600;
 
 export default class FaqComponent extends LightningElement {
     @track faqList = [];
     @track displayedFaqs = [];
     @track searchText = '';
     currentPage = 1;
+    loading = false;
 
     @wire(getFAQs, { searchText: '$searchText', page: '$currentPage' })
     wiredFAQs({ error, data }) {
         if (data) {
             this.faqList = data;
             this.updateDisplayedFaqs();
+            this.hideLoadingAfterDelay();
         } else if (error) {
             console.error('Erro ao buscar FAQs', error);
+            this.hideLoading();
+        } else {
+            this.showLoading();
         }
     }
 
@@ -55,5 +61,18 @@ export default class FaqComponent extends LightningElement {
             });
         }
     }
-    
+
+    showLoading() {
+        this.loading = true;
+    }
+
+    hideLoading() {
+        this.loading = false;
+    }
+
+    hideLoadingAfterDelay() {
+        setTimeout(() => {
+            this.hideLoading();
+        }, MIN_LOADING_TIME);
+    }
 }
