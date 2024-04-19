@@ -5,6 +5,7 @@ public with sharing class FAQController {
         if (!String.isEmpty(searchText)) {
             query += ' WHERE Question__c LIKE \'%' + searchText + '%\'';
         }
+        query += ' LIMIT 300';
         return Database.query(query);
     }
 }
