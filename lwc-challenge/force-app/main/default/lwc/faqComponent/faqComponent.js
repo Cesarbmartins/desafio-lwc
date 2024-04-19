@@ -1,17 +1,17 @@
 import { LightningElement, track, wire } from 'lwc';
 import getFAQs from '@salesforce/apex/FAQController.getFAQs';
 
-const ITEMS_PER_PAGE = 10;
 const MIN_LOADING_TIME = 600;
 
 export default class FaqComponent extends LightningElement {
     @track faqList = [];
     @track displayedFaqs = [];
     @track searchText = '';
-    currentPage = 1;
+    @track currentPage = 1;
+    @track itemsPerPage = 10;
     loading = false;
 
-    @wire(getFAQs, { searchText: '$searchText', page: '$currentPage' })
+    @wire(getFAQs, { searchText: '$searchText', page: '$currentPage', pageSize: '$itemsPerPage' })
     wiredFAQs({ error, data }) {
         if (data) {
             this.faqList = data;
@@ -30,13 +30,18 @@ export default class FaqComponent extends LightningElement {
     }
 
     get isLastPage() {
-        const startIndex = (this.currentPage - 1) * ITEMS_PER_PAGE;
-        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
         return endIndex >= this.faqList.length;
     }
 
     handleSearch(event) {
         this.searchText = event.target.value;
+        this.currentPage = 1;
+    }
+
+    handleItemsPerPageChange(event) {
+        this.itemsPerPage = parseInt(event.target.value, 10);
         this.currentPage = 1;
     }
 
@@ -49,8 +54,8 @@ export default class FaqComponent extends LightningElement {
     }
 
     updateDisplayedFaqs() {
-        const startIndex = (this.currentPage - 1) * ITEMS_PER_PAGE;
-        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
         this.displayedFaqs = this.faqList.slice(startIndex, endIndex);
     
         if (this.displayedFaqs.length === 0 && this.searchText.length > 0) {

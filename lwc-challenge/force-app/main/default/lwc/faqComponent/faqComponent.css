@@ -98,3 +98,18 @@ header {
 .pagination lightning-button {
     margin: 5px;
 }
+
+.items-per-page-container {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.items-per-page-container label {
+    margin-right: 5px;
+}
+
+.items-per-page-container select {
+    padding: 3px 5px;
+}
