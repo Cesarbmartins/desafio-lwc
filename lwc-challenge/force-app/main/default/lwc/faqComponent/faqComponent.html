@@ -33,8 +33,10 @@
             </template>
         </div>
         <div class="pagination">
+            <span>{currentPage} de {totalPages} páginas</span>
             <lightning-button label="Anterior" onclick={handlePrevious} disabled={isFirstPage}></lightning-button>
             <lightning-button label="Próximo" onclick={handleNext} disabled={isLastPage}></lightning-button>
         </div>
+        
     </div>
 </template>

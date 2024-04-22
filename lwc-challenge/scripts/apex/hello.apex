@@ -1,1 +1,1 @@
-FAQGenerator.createMultipleFAQ(1);
+FAQGenerator.createFAQs();

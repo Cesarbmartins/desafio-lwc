@@ -9,6 +9,7 @@ export default class FaqComponent extends LightningElement {
     @track searchText = '';
     @track currentPage = 1;
     @track itemsPerPage = 10;
+    @track totalPages = 0; // Adicionando o número total de páginas
     loading = false;
 
     @wire(getFAQs, { searchText: '$searchText', page: '$currentPage', pageSize: '$itemsPerPage' })
@@ -16,6 +17,7 @@ export default class FaqComponent extends LightningElement {
         if (data) {
             this.faqList = data;
             this.updateDisplayedFaqs();
+            this.updateTotalPages(); // Atualiza o número total de páginas
             this.hideLoadingAfterDelay();
         } else if (error) {
             console.error('Erro ao buscar FAQs', error);
@@ -25,14 +27,17 @@ export default class FaqComponent extends LightningElement {
         }
     }
 
+    // Método para calcular o número total de páginas
+    updateTotalPages() {
+        this.totalPages = Math.ceil(this.faqList.length / this.itemsPerPage);
+    }
+
     get isFirstPage() {
         return this.currentPage === 1;
     }
 
     get isLastPage() {
-        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-        const endIndex = startIndex + this.itemsPerPage;
-        return endIndex >= this.faqList.length;
+        return this.currentPage === this.totalPages;
     }
 
     handleSearch(event) {
@@ -46,18 +51,22 @@ export default class FaqComponent extends LightningElement {
     }
 
     handleNext() {
-        this.currentPage++;
+        if (!this.isLastPage) {
+            this.currentPage++;
+        }
     }
 
     handlePrevious() {
-        this.currentPage--;
+        if (!this.isFirstPage) {
+            this.currentPage--;
+        }
     }
 
     updateDisplayedFaqs() {
         const startIndex = (this.currentPage - 1) * this.itemsPerPage;
         const endIndex = startIndex + this.itemsPerPage;
         this.displayedFaqs = this.faqList.slice(startIndex, endIndex);
-    
+
         if (this.displayedFaqs.length === 0 && this.searchText.length > 0) {
             this.displayedFaqs.push({
                 Id: '0',
